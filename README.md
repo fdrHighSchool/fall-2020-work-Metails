@@ -1,8 +1,8 @@
 # FDR High School - AP CS A
 
-## Last Name: 
-## First Name: 
-## GitHub Username:
+## Last Name: Deng
+## First Name: Jian Hua
+## GitHub Username: Merails
 
 
 ### General Workflow: 
