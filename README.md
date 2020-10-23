@@ -2,7 +2,7 @@
 
 ## Last Name: Deng
 ## First Name: Jian Hua
-## GitHub Username: Merails
+## GitHub Username: Metails
 
 
 ### General Workflow: 
