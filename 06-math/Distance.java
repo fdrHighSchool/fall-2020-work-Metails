@@ -10,7 +10,7 @@ public class Distance{
     double yvalue1 = input.nextDouble();
     System.out.println("Please enter the second x value: ");
     double xvalue2 = input.nextDouble();
-    System.out.println("Please enter the second x value: ");
+    System.out.println("Please enter the second y value: ");
     double yvalue2 = input.nextDouble();
     System.out.println("The distance using the distance formula is: " + cartesianDistance(xvalue1,yvalue1,xvalue2,yvalue2));
     System.out.println("The distance using the taxi cab geometry is: " + taxicabDistance(xvalue1,yvalue1,xvalue2,xvalue1));
@@ -23,7 +23,7 @@ public class Distance{
   }//end cartesian distance method
 
   public static double taxicabDistance(double xvalue1, double yvalue1, double xvalue2, double yvalue2){
-    double distance = Math.abs(yvalue1 - yvalue2) + Math.abs(xvalue1 - xvalue2);
+    double distance = Math.abs(xvalue2 - xvalue1) + Math.abs(yvalue2 - yvalue1);
     return distance;
   }//end taxicab distance.
 
