@@ -1,19 +1,24 @@
 import java.lang.*;
 import java.util.*;
 
+
 public class Distancestring{
   public static void main(String[] args) {
     //get two points from the user (x, y)
     Scanner input = new Scanner(System.in);
 
-    System.out.println("What is your first x and y value?");
+    System.out.println("Hello, welcome to distance calculator");
+    System.out.println("What is your first set of x and y value?");
     String firstValue = input.nextLine();
-    System.out.println("What is your second x and y value?");
+    System.out.println("What is your second set of x and y value?");
     String secondValue = input.nextLine();
+
+    //set all the x and y value.
     int x1 = getx(firstValue);
     int x2 = getx(secondValue);
     int y1 = getY(firstValue);
     int y2 = getY(secondValue);
+
     System.out.println("The distance using the cartesian formula is: " + cartesianDistance(x1,y1,x2,y2));
     System.out.println("The distance using the taxicab formula is: " + taxicabDistance(x1, y1, x2, y2));
 
@@ -42,6 +47,6 @@ public class Distancestring{
   public static double taxicabDistance(double x1, double y1, double x2, double y2){
     double distance = Math.abs(x2 - x1) + Math.abs(y2 - y1);
     return distance;
-  }//end taxicabDistance method
+  }//end taxicabDistance method.
 
 }//end class
