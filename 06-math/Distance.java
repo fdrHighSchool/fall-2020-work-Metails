@@ -25,6 +25,6 @@ public class Distance{
   public static double taxicabDistance(double xvalue1, double yvalue1, double xvalue2, double yvalue2){
     double distance = Math.abs(xvalue2 - xvalue1) + Math.abs(yvalue2 - yvalue1);
     return distance;
-  }//end taxicab distance.
+  }//end taxicab distance
 
 }//end class
