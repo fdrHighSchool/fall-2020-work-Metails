@@ -47,6 +47,7 @@ class CoinsGame {
 
   //Play method(creates random gold for reward and then return the value back.)
   public static int play(int coins) {
+
     Random rand = new Random();
     int min = 50;
     int max = 70;
@@ -94,7 +95,7 @@ class CoinsGame {
         coins = remain; //store the final coins equals to the remain
       } //end >=
     } //end item 2 if statement
-    return coins; 
+    return coins;
 
   }//end shop method
 
