@@ -2,49 +2,55 @@ import java.lang.*;
 
 class AreaCalculator{
   public static void main(String[] args) {
-      squareAreaCalculator(6);
-      System.out.println();
-      circleAreaCalculator(6);
-      System.out.println();
-      triangleAreaCalculator(16,15);
+      System.out.println("This is the area of a Square: " + squareAreaCalculator(6));
+      System.out.println("The area of this square is: " + rectangleAreaCalculator(7, 8));
+      System.out.println("This is the area of a circle: " + circleAreaCalculator(6));
+    System.out.println("This is the area of this right triangle: " + rightTriangleAreaCalculator(25,15));
       System.out.println();
       System.out.println("The volume of this cube is: " + cubeVolCalculator(6));
-      System.out.println("The volume of this rectangular prism is: " + rectangularPrismVolCal(5,9,6));
+      System.out.println("The volume of this rectangular prism is: " + rectangularPrismVolCal(rectangleAreaCalculator(7, 8), 6));
       System.out.println("The volume of this sphere is " + sphereVolumeCal(6));
-      System.out.println("The volume of this triangular prism is " + triangularPrismVolCal(14,25,15,25));
+      System.out.println("The volume of this right triangular prism is " + rightTriangularPrismVolCal(rightTriangleAreaCalculator(25, 15) , 18));
       }//end main class
 
-      public static void squareAreaCalculator(double length){
-        double areaSquare = length * length;
-        System.out.print("This is the area of a Square: " +areaSquare);
+      public static double squareAreaCalculator(double length){
+        double areaSquare = Math.pow(length, 2);
+        return areaSquare;
       }//end square area calculator method
 
-      public static void circleAreaCalculator(double radius){
+      public static double rectangleAreaCalculator(double length, double width){
+        double area = length * width;
+        return area;
+      }
+      public static double circleAreaCalculator(double radius){
         double areaCircle = Math.PI * radius * radius;
-        System.out.print("This is the area of a circle: " +areaCircle);
+        return areaCircle;
       }//end circle area calculator method
 
-      public static void triangleAreaCalculator(double base,double height){
+      public static double rightTriangleAreaCalculator(double base,double height){
        double areaTriangle = base * height / 2;
-       System.out.print("This is the area of a triangle: " + areaTriangle);
+       return areaTriangle;
       }//end area triangle calculator method
 
+      //a^3
       public static double cubeVolCalculator(double length){
         double volume = Math.pow(length,3);
         return volume;
       }//end cubeAreaCalculator method
 
-      public static double rectangularPrismVolCal(double width, double height, double length){
-        double volume = width * height * length;
+      // L*W*H or area * height
+      public static double rectangularPrismVolCal(double area, double height){
+        double volume = area * height;
         return volume;
       }//end triangularPrismAreaCal method
 
-      public static double triangularPrismVolCal(double bside1, double bside2, double bside3, double height){
-        double volume = ((1.0/4) * height) * Math.sqrt(-1 * Math.pow(bside1, 4) + 2 * (Math.pow(bside1 * bside2, 2)) + 2 * (Math.pow(bside1 * bside3, 2)) - Math.pow(bside2, 4) + 2 *
-        (Math.pow(bside2 * bside3, 2)) - (Math.pow(bside3, 4)));
+      // V = 0.5 * base * altitude * height
+      public static double rightTriangularPrismVolCal(double area, double height){
+        double volume = (area * height) / 2;
         return volume;
       }//end triangularPrismVolCal method
 
+      // 4/3*pi*r^3
       public static double sphereVolumeCal(double radius){
         double volume = (4.0/3) * Math.PI * Math.pow(radius, 3);
         return volume;
