@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class FracCalc {
 
     /**
@@ -5,6 +6,12 @@ public class FracCalc {
      * @param args - unused
      */
     public static void main(String[] args){
+      Scanner input = new Scanner(System.in);
+
+      System.out.println("What is the fraction equation you want to calculate: ");
+      String equation = input.nextLine();
+      System.out.println("The second operand(fraction) is: " + produceAnswer(equation));
+
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
@@ -18,6 +25,16 @@ public class FracCalc {
      *      Example: return ==> "1_1/4"
      */
     public static String produceAnswer(String input){
+      int lastIndex = input.length();
+      int space1 = input.indexOf(" ");
+      String firstFrac = input.substring(0, space1);
+      String operator = input.substring(space1 + 1, space1 + 2);
+      String secondFrac = input.substring(space1 + 3, lastIndex);
+
+
+
+
+      return secondFrac;
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
         // Checkpoint 2: Return the second operand as a string representing each part.
@@ -27,8 +44,7 @@ public class FracCalc {
         //               Note: Answer does not need to be reduced, but it must be correct.
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
-
-        return "";
+        //Integer.parseInt(secondFrac);
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
@@ -42,7 +58,7 @@ public class FracCalc {
      */
     public static int greatestCommonDivisor(int a, int b){
 
-    }//end greatestCommonDivisor method
+    //}end greatestCommonDivisor method
 
     /**
      * leastCommonMultiple - Find the smallest integer that can be evenly divided by two integers.
@@ -51,8 +67,10 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The LCM.
      */
+     return 0;
+   }
     public static int leastCommonMultiple(int a, int b){
-
+      return 0;
     }//end leastCommonMultiple
 
 }//end class
