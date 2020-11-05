@@ -96,7 +96,9 @@ public class FracCalc {
         String secNumerator = input.substring(0, indexSlash);
         return secNumerator;
         }else{
-          return "0";
+          int fullInd = input.length();
+          String secNumerator = input.substring(0,fullInd);
+          return secNumerator;
         }
     }//last bracket of the whole if statement
 
