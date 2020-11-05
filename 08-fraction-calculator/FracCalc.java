@@ -7,10 +7,26 @@ public class FracCalc {
      */
     public static void main(String[] args){
       Scanner input = new Scanner(System.in);
+      boolean start = true;
+      String stop = "quit";
 
+      while(start == true){
       System.out.println("What is the fraction equation you want to calculate: ");
       String equation = input.nextLine();
-      System.out.println("The second operand(fraction) is: " + produceAnswer(equation));
+      int yesorno = stop.compareToIgnoreCase(equation);
+      if(yesorno == 0){
+        start = false;
+
+      }else{
+        if(start = true){
+        System.out.println("The second operand(fraction) is: " + produceAnswer(equation));
+      }//end statment for indicating if it will print this above statement.
+    }
+
+
+
+    }//end while statement
+      //if statement to stop the the loop.
 
         // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
@@ -32,9 +48,15 @@ public class FracCalc {
       String secondFrac = input.substring(space1 + 3, lastIndex);
 
 
+      String wholeNum = wholeNumberIndicator(secondFrac);
+      String secondNumerator = numeratorIndicator(secondFrac);
+      String secondDenominator = denominatorIndicator(secondFrac);
+
+      String answer = ("Whole: " + wholeNum + " Numerator: " + secondNumerator + " Denominator: " + secondDenominator);
 
 
-      return secondFrac;
+
+      return answer;
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
         // Checkpoint 2: Return the second operand as a string representing each part.
@@ -46,6 +68,52 @@ public class FracCalc {
         //               Example "4/5 * 1_2/4" returns "1_1/5".
         //Integer.parseInt(secondFrac);
     }//end produceAnswer method
+
+
+    //Creates method to get whole number, numerator, denominator.
+    public static String wholeNumberIndicator(String input){
+      boolean uslash = input.contains("_");
+      if(uslash == true){
+      int indexUnderSlash = input.indexOf("_");
+      String whole = input.substring(0,indexUnderSlash);
+      return whole;
+    }else{
+      return "0";
+    }
+}//end wholeNumberIndicator method
+
+    public static String numeratorIndicator(String input){
+      boolean slash = input.contains("/");
+      boolean underslash = input.contains("_");
+      if(underslash == true){
+        int uslash1 = input.indexOf("_");
+        int indexSlash = input.indexOf("/");
+        String secondNumerator = input.substring(uslash1 + 1, indexSlash);
+        return secondNumerator;
+      }else{
+      if(slash == true){
+        int indexSlash = input.indexOf("/");
+        String secNumerator = input.substring(0, indexSlash);
+        return secNumerator;
+        }else{
+          return "0";
+        }
+    }//last bracket of the whole if statement
+
+    }//end numeratorIndicator method
+
+    public static String denominatorIndicator(String input){
+      boolean slash = input.contains("/");
+      if(slash == true){
+        int indexSlash2 = input.indexOf("/");
+        int fullIndex = input.length();
+        String secDenominator = input.substring(indexSlash2 + 1, fullIndex);
+        return secDenominator;
+    }else{
+      return "1";
+    }
+  }//end denominatorIndicator method
+
 
     // TODO: Fill in the space below with helper methods
 
@@ -72,5 +140,7 @@ public class FracCalc {
     public static int leastCommonMultiple(int a, int b){
       return 0;
     }//end leastCommonMultiple
+
+
 
 }//end class
