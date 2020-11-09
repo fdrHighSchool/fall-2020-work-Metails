@@ -20,7 +20,7 @@ public class FracCalc {
 
       }else{
         if(start = true){
-        System.out.println("The second operand(fraction) is: " + produceAnswer(equation));
+        System.out.println("The second operand(fraction) is: " + produceAnswer(equation) + "\n");
       }//end statment for indicating if it will print this above statement.
     }
 
@@ -65,6 +65,9 @@ public class FracCalc {
       //Determine the operator and change the method to excute upon different operators.
       if(operator.contains("*")){
         System.out.println("The answer is " + multiply(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
+      }else
+      if(operator.contains("/")){
+        System.out.println("The answer is " + division(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
       }
 
       return answer;
@@ -140,7 +143,7 @@ public class FracCalc {
     public static String multiply(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
 
       //Create if statements to react to different situations in multiplying fractions.
-      if(wholeNum1 > 0 && wholeNum2 > 0){
+      if(wholeNum1 != 0 && wholeNum2 != 0){
         //get rid of the whole number by simplifying the fraction.
         int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
         int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
@@ -150,7 +153,7 @@ public class FracCalc {
         String answer = (answerNumerator + "/" + answerDenominator);
         return answer + " using 1";
       }else
-        if(wholeNum1 != 0 && wholeNum2 != 0){
+        if(wholeNum1 == 0 && wholeNum2 == 0){
           //simply multiply fraction because there is no whole number in this case.
           int answerNumerator = firstNumerator1 * secondNumerator2;
           int answerDenominator = firstDenominator1 * secondDenominator2;
@@ -171,18 +174,66 @@ public class FracCalc {
         }else
           //this case would only happend if frac 2 has a whole number, thus it will simplify it.
             if(wholeNum2 > 0 && wholeNum1 == 0){
+              //simplify it
               int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
               //multiply them after simplifying the fraction
               int answerNumerator = simplifiedNum2 * firstNumerator1;
               int answerDenominator = firstDenominator1 * secondDenominator2;
               String answer = (answerNumerator + "/" + answerDenominator);
-              return answer + "using 4";
+              return answer + " using 4";
             }else{
               return "0";
             }//last closing bracket for the whole if statement
 
           }//end multiply method
+
+          //Created method to execute division
+          public static String division(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
+
+            if(wholeNum1 > 0 && wholeNum2 > 0){
+              //get rid of the whole number by simplifying the fraction.
+              int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
+              int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
+              //multiply it after simplifying the fraction
+              int answerNumerator = simplifiedNum1 * secondDenominator2;
+              int answerDenominator = firstDenominator1 * simplifiedNum2;
+              String answer = (answerNumerator + "/" + answerDenominator);
+              return answer + " using 1";
+            }else
+              if(wholeNum1 == 0 && wholeNum2 == 0){
+                //simply multiply fraction because there is no whole number in this case.
+                int answerNumerator = firstNumerator1 * secondDenominator2;
+                int answerDenominator = firstDenominator1 * secondNumerator2;
+                String answer = (answerNumerator + "/" + answerDenominator);
+                return answer + " using 2";
+              //end second if statement
+            }else
+              if(wholeNum1 > 0 && wholeNum2 == 0){
+                  //this case only occur when frac1 has whole number that is more than 1, if that happens, it will simplify frac 1
+                  int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
+
+                  //multiply them after simplifying the fraction
+                  int answerNumerator = simplifiedNum1 * secondDenominator2;
+                  int answerDenominator = firstDenominator1 * secondNumerator2;
+                  String answer = (answerNumerator + "/" + answerDenominator);
+                  return answer + " using 3";
+
+              }else
+                //this case would only happend if frac 2 has a whole number, thus it will simplify it.
+                  if(wholeNum2 > 0 && wholeNum1 == 0){
+                    //simplify it
+                    int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
+
+                    //multiply them after simplifying the fraction
+                    int answerNumerator = secondDenominator2 * firstNumerator1;
+                    int answerDenominator = firstDenominator1 * simplifiedNum2;
+                    String answer = (answerNumerator + "/" + answerDenominator);
+                    return answer + " using 4";
+                  }else{
+                    return "0";
+                  }//last closing bracket for the whole if statement
+          }//end division method
 
     // TODO: Fill in the space below with helper methods
 
