@@ -195,14 +195,14 @@ public class FracCalc {
               //get rid of the whole number by simplifying the fraction.
               int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
               int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
-              //multiply it after simplifying the fraction
+              //divide it after simplifying the fraction
               int answerNumerator = simplifiedNum1 * secondDenominator2;
               int answerDenominator = firstDenominator1 * simplifiedNum2;
               String answer = (answerNumerator + "/" + answerDenominator);
               return answer + " using 1";
             }else
               if(wholeNum1 == 0 && wholeNum2 == 0){
-                //simply multiply fraction because there is no whole number in this case.
+                //simply divide the fraction because there is no whole number in this case.
                 int answerNumerator = firstNumerator1 * secondDenominator2;
                 int answerDenominator = firstDenominator1 * secondNumerator2;
                 String answer = (answerNumerator + "/" + answerDenominator);
@@ -213,7 +213,7 @@ public class FracCalc {
                   //this case only occur when frac1 has whole number that is more than 1, if that happens, it will simplify frac 1
                   int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
 
-                  //multiply them after simplifying the fraction
+                  //divide them after simplifying the fraction
                   int answerNumerator = simplifiedNum1 * secondDenominator2;
                   int answerDenominator = firstDenominator1 * secondNumerator2;
                   String answer = (answerNumerator + "/" + answerDenominator);
@@ -225,7 +225,7 @@ public class FracCalc {
                     //simplify it
                     int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
-                    //multiply them after simplifying the fraction
+                    //divide them after simplifying the fraction
                     int answerNumerator = secondDenominator2 * firstNumerator1;
                     int answerDenominator = firstDenominator1 * simplifiedNum2;
                     String answer = (answerNumerator + "/" + answerDenominator);
