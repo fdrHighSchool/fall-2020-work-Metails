@@ -62,7 +62,7 @@ public class FracCalc {
       //This is print out to accomplish checkpoint 2(Don't know if I should delete this yet)
       String answer = ("Whole: " + wholeNum2 + " Numerator: " + secondNumerator2 + " Denominator: " + secondDenominator2);
 
-      //Determine the operator and change the method to excute upon different operators.
+      //Determine the operator and change the method to excute based upon different operators.
       if(operator.contains("*")){
         System.out.println("The answer is " + multiply(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
       }else
@@ -263,7 +263,7 @@ public class FracCalc {
               return answer + " using 1";
             }else
               if(wholeNum1 == 0 && wholeNum2 == 0){
-                //simply add the fraction because there is no whole number in this case.
+                //add the fraction because there is no whole number in this case.
                 int answerNumerator = (firstNumerator1 * secondDenominator2) + (secondNumerator2 * firstDenominator1);
                 int answerDenominator = (firstDenominator1 * secondDenominator2);
                 String answer = (answerNumerator + "/" + answerDenominator);
@@ -286,7 +286,7 @@ public class FracCalc {
                     //simplify it
                     int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
-                    //divide them after turning the whole number into fraction
+                    //add them after turning the whole number into fraction
                     int answerNumerator = (firstNumerator1 * secondDenominator2) + (simplifiedNum2 * firstDenominator1);
                     int answerDenominator = firstDenominator1 * secondDenominator2;
                     String answer = (answerNumerator + "/" + answerDenominator);
@@ -297,6 +297,7 @@ public class FracCalc {
           }//end of the whole adding method
 
 
+          //Created a method to calculate addition when it has the same denominator.
           public static String addSameDenominator(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
             if(wholeNum1 > 0 && wholeNum2 > 0){
               //get rid of the whole number by getting rid of whole number in the fraction.
@@ -320,7 +321,7 @@ public class FracCalc {
                   //this case only occur when frac1 has whole number that is more than 1, if that happens, it will get rid of whole number in frac 1
                   int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
 
-                  //divide them after simplifying the fraction
+                  //add them after simplifying the fraction
                   int answerNumerator = simplifiedNum1 + secondNumerator2;
                   int answerDenominator = firstDenominator1;
                   String answer = (answerNumerator + "/" + answerDenominator);
@@ -332,7 +333,7 @@ public class FracCalc {
                     //simplify it
                     int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
-                    //divide them after turning the whole number into fraction
+                    //add them after turning the whole number into fraction
                     int answerNumerator = firstNumerator1 + simplifiedNum2;
                     int answerDenominator = firstDenominator1 * secondDenominator2;
                     String answer = (answerNumerator + "/" + answerDenominator);
