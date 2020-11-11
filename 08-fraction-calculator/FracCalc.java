@@ -64,16 +64,16 @@ public class FracCalc {
 
       //Determine the operator and change the method to excute based upon different operators.
       if(operator.contains("*")){
-        System.out.println("The answer is " + multiply(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
+        System.out.println("The answer is " + multiply(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2)));
       }else
       if(operator.contains("/")){
-        System.out.println("The answer is " + division(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
+        System.out.println("The answer is " + division(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2)));
       }else
       if(operator.contains("+") && firstDenominator1 != secondDenominator2){
-        System.out.println("The answer is " + addDifferentDenominator(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
+        System.out.println("The answer is " + addDifferentDenominator(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2)));
       }else
       if(operator.contains("+") && firstDenominator1 == secondDenominator2){
-        System.out.println("The answer is " + addSameDenominator(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2));
+        System.out.println("The answer is " + addSameDenominator(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2)));
       }
 
       return answer;
@@ -116,7 +116,7 @@ public class FracCalc {
         String secondNumerator = input.substring(uslash1 + 1, indexSlash);
         return Integer.parseInt(secondNumerator);
       }else{
-      //if there is slash that means it's a fraction and the index before the slash is the numerator
+      //if there is slash that means it is a fraction and the index before the slash will be the numerator
       if(slash == true){
         int indexSlash = input.indexOf("/");
         String secNumerator = input.substring(0, indexSlash);
@@ -126,9 +126,10 @@ public class FracCalc {
           String secNumerator = input.substring(0,fullInd);
           return Integer.parseInt(secNumerator);
         }
-    }//last bracket of the whole if statement
+      }//last bracket of the whole if statement
 
     }//end numeratorIndicator method
+
 
     //This will excute method to indicate the denominator in the fraction
     public static int denominatorIndicator(String input){
@@ -146,23 +147,35 @@ public class FracCalc {
 
 
 
+  //method that will turn fractions that has a whole number into improper fraction
+  public static int improperNumerator(int wholenumber, int numerator, int denominator){
+    int improperNumerator = denominator * wholenumber + numerator;
+    return improperNumerator;
+  }//end whole method
 
+
+    /*
+    These will be easy to check if I want to indicate which of the if statment is the code using:
+
+    using 1 means: if statement of 1 in the method is used
+    using 2 means: if statment of 2 in the method is used
+    using 3 means if statment of 3 in the method is used
+    using 4 means if statment of 4 in the method is used
+    */
 
     //method to excute multiplication.
-    public static String multiply(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
+    public static String multiply(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2, int improperFrac1, int improperFrac2){
 
       //Create if statements to react to different situations in multiplying fractions.
       if(wholeNum1 != 0 && wholeNum2 != 0){
-        //get rid of the whole number by simplifying the fraction.
-        int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
-        int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
         //multiply it after turning whole number into fraction
-        int answerNumerator = simplifiedNum1 * simplifiedNum2;
+        int answerNumerator = improperFrac1 * improperFrac2;
         int answerDenominator = firstDenominator1 * secondDenominator2;
         String answer = (answerNumerator + "/" + answerDenominator);
         return answer + " using 1";
       }else
         if(wholeNum1 == 0 && wholeNum2 == 0){
+
           //simply multiply fraction because there is no whole number in this case.
           int answerNumerator = firstNumerator1 * secondNumerator2;
           int answerDenominator = firstDenominator1 * secondDenominator2;
@@ -171,11 +184,9 @@ public class FracCalc {
         //end second if statement
       }else
         if(wholeNum1 > 0 && wholeNum2 == 0){
-            //this case only occur when frac1 has whole number that is more than 1, if that happens, it will get rid of whole number in frac 1
-            int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
 
-            //multiply them after turning whole number into fraction
-            int answerNumerator = simplifiedNum1 * secondNumerator2;
+            //multiply them using the improper fraction that was done using the improper fraction method.
+            int answerNumerator = improperFrac1 * secondNumerator2;
             int answerDenominator = firstDenominator1 * secondDenominator2;
             String answer = (answerNumerator + "/" + answerDenominator);
             return answer + " using 3";
@@ -183,11 +194,10 @@ public class FracCalc {
         }else
           //this case would only happend if frac 2 has a whole number, thus it will getting rid of it.
             if(wholeNum2 > 0 && wholeNum1 == 0){
-              //simplify it
-              int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
+
 
               //multiply them after getting rid of the whole number
-              int answerNumerator = simplifiedNum2 * firstNumerator1;
+              int answerNumerator = improperFrac2 * firstNumerator1;
               int answerDenominator = firstDenominator1 * secondDenominator2;
               String answer = (answerNumerator + "/" + answerDenominator);
               return answer + " using 4";
@@ -201,15 +211,12 @@ public class FracCalc {
 
 
           //Created method to execute division
-          public static String division(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
-
+          public static String division(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2, int improperFrac1, int improperFrac2){
+            //Creating if statement to handle different situations.
             if(wholeNum1 > 0 && wholeNum2 > 0){
-              //get rid of the whole number by getting rid of whole number in the fraction.
-              int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
-              int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
-              //divide it after getting rid of the whole number in the fraction
-              int answerNumerator = simplifiedNum1 * secondDenominator2;
-              int answerDenominator = firstDenominator1 * simplifiedNum2;
+              //divide them using the improper fraction because in this case, both of the fractions has a whole number
+              int answerNumerator = improperFrac1 * secondDenominator2;
+              int answerDenominator = firstDenominator1 * improperFrac2;
               String answer = (answerNumerator + "/" + answerDenominator);
               return answer + " using 1";
             }else
@@ -220,13 +227,11 @@ public class FracCalc {
                 String answer = (answerNumerator + "/" + answerDenominator);
                 return answer + " using 2";
               //end second if statement
-            }else
+            }else // this is a if statement when only fraction 1 has a whole number
               if(wholeNum1 > 0 && wholeNum2 == 0){
-                  //this case only occur when frac1 has whole number that is more than 1, if that happens, it will get rid of whole number in frac 1
-                  int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
 
-                  //divide them after simplifying the fraction
-                  int answerNumerator = simplifiedNum1 * secondDenominator2;
+                  //divide them using the improperfraction from fraction 1
+                  int answerNumerator = improperFrac1 * secondDenominator2;
                   int answerDenominator = firstDenominator1 * secondNumerator2;
                   String answer = (answerNumerator + "/" + answerDenominator);
                   return answer + " using 3";
@@ -234,12 +239,10 @@ public class FracCalc {
               }else
                 //this case would only happend if frac 2 has a whole number, thus it will get rid of the whole number and turn it into fraction.
                   if(wholeNum2 > 0 && wholeNum1 == 0){
-                    //simplify it
-                    int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
                     //divide them after turning the whole number into fraction
                     int answerNumerator = secondDenominator2 * firstNumerator1;
-                    int answerDenominator = firstDenominator1 * simplifiedNum2;
+                    int answerDenominator = firstDenominator1 * improperFrac2;
                     String answer = (answerNumerator + "/" + answerDenominator);
                     return answer + " using 4";
                   }else{
@@ -249,15 +252,12 @@ public class FracCalc {
 
 
 
-
-          public static String addDifferentDenominator(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
-
+          // Creating method to add fraction in the situation where denominator is different
+          public static String addDifferentDenominator(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2, int improperFrac1, int improperFrac2){
+            //Creating if statement to handle different situations.
             if(wholeNum1 > 0 && wholeNum2 > 0){
-              //get rid of the whole number by getting rid of whole number in the fraction.
-              int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
-              int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
               //add it after getting rid of the whole number in the fraction
-              int answerNumerator = (simplifiedNum1 * secondDenominator2) + (simplifiedNum2 * firstDenominator1);
+              int answerNumerator = (improperFrac1 * secondDenominator2) + (improperFrac2 * firstDenominator1);
               int answerDenominator = (firstDenominator1 * secondDenominator2);
               String answer = (answerNumerator + "/" + answerDenominator);
               return answer + " using 1";
@@ -271,11 +271,9 @@ public class FracCalc {
               //end second if statement
             }else
               if(wholeNum1 > 0 && wholeNum2 == 0){
-                  //this case only occur when frac1 has whole number that is more than 1, if that happens, it will get rid of whole number in frac 1
-                  int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
 
                   //divide them after simplifying the fraction
-                  int answerNumerator = (simplifiedNum1 * secondDenominator2) + (firstDenominator1 * secondNumerator2);
+                  int answerNumerator = (improperFrac1 * secondDenominator2) + (firstDenominator1 * secondNumerator2);
                   int answerDenominator = firstDenominator1 * secondDenominator2;
                   String answer = (answerNumerator + "/" + answerDenominator);
                   return answer + " using 3";
@@ -287,7 +285,7 @@ public class FracCalc {
                     int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
                     //add them after turning the whole number into fraction
-                    int answerNumerator = (firstNumerator1 * secondDenominator2) + (simplifiedNum2 * firstDenominator1);
+                    int answerNumerator = (firstNumerator1 * secondDenominator2) + (improperFrac2 * firstDenominator1);
                     int answerDenominator = firstDenominator1 * secondDenominator2;
                     String answer = (answerNumerator + "/" + answerDenominator);
                     return answer + " using 4";
@@ -298,13 +296,11 @@ public class FracCalc {
 
 
           //Created a method to calculate addition when it has the same denominator.
-          public static String addSameDenominator(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2){
+          public static String addSameDenominator(int wholeNum1, int firstNumerator1, int firstDenominator1, int wholeNum2, int secondNumerator2, int secondDenominator2, int improperFrac1, int improperFrac2){
+            //Creating if statement to handle different situations.
             if(wholeNum1 > 0 && wholeNum2 > 0){
-              //get rid of the whole number by getting rid of whole number in the fraction.
-              int simplifiedNum1 = (firstDenominator1 * wholeNum1) + firstNumerator1;
-              int simplifiedNum2 = (secondDenominator2 * wholeNum2) + secondNumerator2;
               //add it after getting rid of the whole number in the fraction
-              int answerNumerator = simplifiedNum1 + simplifiedNum2;
+              int answerNumerator = improperFrac1 + improperFrac2;
               int answerDenominator = firstDenominator1;
               String answer = (answerNumerator + "/" + answerDenominator);
               return answer + " using 1";
@@ -318,11 +314,8 @@ public class FracCalc {
               //end second if statement
             }else
               if(wholeNum1 > 0 && wholeNum2 == 0){
-                  //this case only occur when frac1 has whole number that is more than 1, if that happens, it will get rid of whole number in frac 1
-                  int simplifiedNum1 = firstDenominator1 * wholeNum1 + firstNumerator1;
-
-                  //add them after simplifying the fraction
-                  int answerNumerator = simplifiedNum1 + secondNumerator2;
+                  //add the fraction with improper form
+                  int answerNumerator = improperFrac1 + secondNumerator2;
                   int answerDenominator = firstDenominator1;
                   String answer = (answerNumerator + "/" + answerDenominator);
                   return answer + " using 3";
@@ -330,11 +323,9 @@ public class FracCalc {
               }else
                 //this case would only happend if frac 2 has a whole number, thus it will get rid of the whole number and turn it into fraction.
                   if(wholeNum2 > 0 && wholeNum1 == 0){
-                    //simplify it
-                    int simplifiedNum2 = secondDenominator2 * wholeNum2 + secondNumerator2;
 
                     //add them after turning the whole number into fraction
-                    int answerNumerator = firstNumerator1 + simplifiedNum2;
+                    int answerNumerator = firstNumerator1 + improperFrac2;
                     int answerDenominator = firstDenominator1 * secondDenominator2;
                     String answer = (answerNumerator + "/" + answerDenominator);
                     return answer + " using 4";
@@ -354,7 +345,7 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The GCD.
      */
-    public static int greatestCommonDivisor(int a, int b){
+    public static int greatestCommonDivisor(int denominator1, int denominator2){
 
 
     //}end greatestCommonDivisor method
@@ -368,7 +359,7 @@ public class FracCalc {
      */
      return 0;
    }
-    public static int leastCommonMultiple(int a, int b){
+    public static int leastCommonMultiple(int denominator1, int denominator2){
       //if()
 
       return 0;
