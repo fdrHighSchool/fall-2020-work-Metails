@@ -127,7 +127,7 @@ public class FracCalc {
           String answerMixed = subtractSameDenominator(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2));
           String answer = reducing(answerMixed);
           return answer;
-        }else{
+        }else {
           return ":(";
         }
 
@@ -153,7 +153,7 @@ public class FracCalc {
       answerDen = Math.abs(answerDen);
       System.out.println("\nTurning into positive because there is 2 negative\n");
     }//the end of the if statment within if statement 1 to turn negative fraction into positive.
-      if(Math.abs(answerNum) > Math.abs(answerDen)){
+      while(Math.abs(answerNum) > Math.abs(answerDen)){
         remainder = answerNum % answerDen;
         newWhole = answerNum / answerDen;
 
@@ -168,6 +168,10 @@ public class FracCalc {
         String answer = (newWhole + "_" + remainder + "/" + answerDen);
         return answer;
         }//end the if statement within answerNum > answerDen
+
+        if(answerDen == 1){
+          return Integer.toString(newWhole);
+        }
 
 
       }//end of answerNum > answerDen
@@ -604,10 +608,10 @@ public class FracCalc {
 
     public static int greatestCommonDivisor(int numerator, int denominator){
       //compare numerator and denominator to see which one is bigger
-      //Since GCF can't be greater than the greatest Numerator and denominator
+      //Since GCF can't be greater than the greatest Numerator or denominator
       //Thus, the bigger one will be amount of loops it will run, which will be the maxium amount of time that the while loop would run
       //gcf must at least be 2
-      int t = 2;//gcf must at least be 2
+      int t = 2;
       int greatest = 0;
       int gcf = 1;
 
