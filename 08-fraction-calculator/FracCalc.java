@@ -169,6 +169,7 @@ public class FracCalc {
         return answer;
         }//end the if statement within answerNum > answerDen
 
+        //Get rid of 1 when denominator is 1
         if(answerDen == 1){
           return Integer.toString(newWhole);
         }
