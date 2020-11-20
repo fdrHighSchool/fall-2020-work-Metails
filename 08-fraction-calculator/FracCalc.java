@@ -94,11 +94,18 @@ public class FracCalc {
       //System.out.println("\nGCF: " + greatestCommonDivisor(3,24));
 
       //Determine which operator it is, then change the method to excute based upon different operators and requirements.
+      //this will happen will one of the denominator is equal to 0
+      if(firstDenominator1 == 0 || secondDenominator2 == 0){
+        String answer = ("ERROR: Cannot divide by zero.");
+        return answer;
+      }else
+      //if operator is * then proceeds to multiply method
       if(operator.contains("*")){
         String answerMixed = multiply(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2));
         String answer = reducing(answerMixed);
         return answer;
       }else
+      //if operator is / then proceeds to division method
       if(operator.contains("/")){
         String answerMixed = division(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2));
         String answer = reducing(answerMixed);
@@ -122,14 +129,14 @@ public class FracCalc {
           String answer = reducing(answerMixed);
           return answer;
         }else
-        //if statement when operator is "-" and both denominator are the same
+        //if statement when operator is "-" and both denominator are the same, then proceeds to execute subtraction when both denomiantor are the same
         if(operator.contains("-") && firstDenominator1 == secondDenominator2){
           String answerMixed = subtractSameDenominator(wholeNum1, firstNumerator1, firstDenominator1, wholeNum2, secondNumerator2, secondDenominator2,improperNumerator(wholeNum1, firstNumerator1, firstDenominator1),improperNumerator(wholeNum2, secondNumerator2, secondDenominator2));
           String answer = reducing(answerMixed);
           return answer;
         }else {
           return ":(";
-        }
+        }//end the if statement for the changing method upon different operator.
 
 
 
@@ -172,10 +179,16 @@ public class FracCalc {
         //Get rid of 1 when denominator is 1
         if(answerDen == 1){
           return Integer.toString(newWhole);
-        }
+        }//end if for answerDen == 1
 
 
-      }//end of answerNum > answerDen
+      }//end of answerNum > answerDen while statement
+      //This will work when the numerator is zero thus returning 0 without a denominator
+      if(answerNum == 0){
+        String answer = "0";
+        return answer;
+      }
+
       String answer = (answerNum + "/" + answerDen);
       return answer;
     }//end reducing method
