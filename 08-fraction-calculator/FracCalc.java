@@ -163,7 +163,6 @@ public class FracCalc {
       while(Math.abs(answerNum) > Math.abs(answerDen)){
         remainder = answerNum % answerDen;
         newWhole = answerNum / answerDen;
-
         //excute code below when numerator is bigger than denominator, meaning it can be reduced
         if(remainder >  0 || remainder < 0){
           //if both numerator and the new whole number contains "-" it's going to remove "-" sign in numerator
@@ -187,7 +186,12 @@ public class FracCalc {
       if(answerNum == 0){
         String answer = "0";
         return answer;
-      }
+      }//end if for Numerator = 0
+
+      if(Math.abs(answerNum) == Math.abs(answerDen)){
+        int answer = (answerNum / answerDen);
+        return Integer.toString(answer);
+      }//end if for same numerator and same denominator
 
       String answer = (answerNum + "/" + answerDen);
       return answer;
@@ -622,29 +626,29 @@ public class FracCalc {
 
     public static int greatestCommonDivisor(int numerator, int denominator){
       //compare numerator and denominator to see which one is bigger
-      //Since GCF can't be greater than the greatest Numerator or denominator
-      //Thus, the bigger one will be amount of loops it will run, which will be the maxium amount of time that the while loop would run
-      //gcf must at least be 2
-      int t = 2;
-      int greatest = 0;
+      //Since GCF can't be greater than the least Numerator or denominator
+      //Thus, the minimum will be amount of loops it will run, which will be the maxium amount of time that the while loop would run
+      //gcf must at least be 1
+      int min = 0;
       int gcf = 1;
 
       //check the absolute value of numerator and denominator to see which one is bigger
       if(Math.abs(numerator) > Math.abs(denominator)){
-        greatest = Math.abs(numerator);
+        min = Math.abs(denominator);
       }else if(Math.abs(denominator) > Math.abs(numerator)){
-        greatest = Math.abs(denominator);
-      }//end if method for comparing numerator and denominator to find out which is bigger
+        min = Math.abs(numerator);
+      }//end if method for comparing numerator and denominator to find out which is the min
 
-      while(t < greatest){
+      for(int t = min; t != 0; t--){
         //when numerator module the number of t = 0, that means it will be a potential GCF
         if(numerator % t == 0 && denominator % t == 0){//when numerator module the number of t = 0, that means it will be a potential GCF
           gcf = t;
-        }//end if statment
-        t++;
-      }//end while statement
-      return gcf;
-    //}end greatestCommonDivisor method
+          return gcf;
+        }//end last bracket for if statement
+
+      }//end for loops
+      return 1;
+    }//end greatestCommonDivisor method
 
     /**
      * leastCommonMultiple - Find the smallest integer that can be evenly divided by two integers.
@@ -654,7 +658,7 @@ public class FracCalc {
      * @return The LCM.
      */
 
-   }//Honestly I don't think I need to create a least common multiple method, all I need is a GCF
+   //}//Honestly I don't think I need to create a least common multiple method, all I need is a GCF
     public static int leastCommonMultiple(int denominator1, int denominator2){
       //if()
 
