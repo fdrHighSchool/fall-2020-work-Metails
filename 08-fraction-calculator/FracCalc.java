@@ -149,7 +149,6 @@ public class FracCalc {
       int answerDen = denominatorIndicator(answerMixed)/greatestCommonDivisor(numeratorIndicator(answerMixed),denominatorIndicator(answerMixed));
       int remainder = 0;
       int newWhole = answerNum;
-      String stringRemainder;
 
       //Getting to know what the GCF is, easier to fix bugs
       System.out.println("GCF is: " + greatestCommonDivisor(numeratorIndicator(answerMixed),denominatorIndicator(answerMixed)));
@@ -164,12 +163,18 @@ public class FracCalc {
         remainder = answerNum % answerDen;
         newWhole = answerNum / answerDen;
         //excute code below when numerator is bigger than denominator, meaning it can be reduced
-        if(remainder >  0 || remainder < 0){
+        if(remainder != 0){
           //if both numerator and the new whole number contains "-" it's going to remove "-" sign in numerator
           if(Integer.toString(remainder).contains("-") && Integer.toString(newWhole).contains("-")){
-            stringRemainder = Integer.toString(remainder).replace("-", "");
+            String stringRemainder = Integer.toString(remainder).replace("-", "");
             remainder = Integer.parseInt(stringRemainder);
           }//end if statment for checking if remainder and the whole contains negative
+
+          //this will remove denominator's "-" sign and make wholenumber the only one who has "-" sign
+          if(Integer.toString(newWhole).contains("-") && Integer.toString(answerDen).contains("-")){
+            String stringDenominator = Integer.toString(answerDen).replace("-","");
+            answerDen = Integer.parseInt(stringDenominator);
+          }//end if statement when whole number and denominator both contains 0
 
         String answer = (newWhole + "_" + remainder + "/" + answerDen);
         return answer;
@@ -192,6 +197,15 @@ public class FracCalc {
         int answer = (answerNum / answerDen);
         return Integer.toString(answer);
       }//end if for same numerator and same denominator
+
+      //circumstances where denominator has to - sign but not the numerator
+      if(Integer.toString(answerDen).contains("-")){
+        String stringDenominator = Integer.toString(answerDen).replace("-","");
+        answerDen = Integer.parseInt(stringDenominator);
+        answerNum *= -1;
+        String answer = (answerNum + "/" + answerDen);
+        return answer;
+      }//end if statement
 
       String answer = (answerNum + "/" + answerDen);
       return answer;
@@ -629,15 +643,10 @@ public class FracCalc {
       //Since GCF can't be greater than the least Numerator or denominator
       //Thus, the minimum will be amount of loops it will run, which will be the maxium amount of time that the while loop would run
       //gcf must at least be 1
-      int min = 0;
       int gcf = 1;
 
-      //check the absolute value of numerator and denominator to see which one is bigger
-      if(Math.abs(numerator) > Math.abs(denominator)){
-        min = Math.abs(denominator);
-      }else if(Math.abs(denominator) > Math.abs(numerator)){
-        min = Math.abs(numerator);
-      }//end if method for comparing numerator and denominator to find out which is the min
+      //Get the minimum of the both
+      int min = Math.min(numerator, denominator);
 
       for(int t = min; t != 0; t--){
         //when numerator module the number of t = 0, that means it will be a potential GCF
