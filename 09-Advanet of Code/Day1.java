@@ -6,24 +6,44 @@ public class Day1{
     System.out.print("Please enter the Puzzle Input: ");
     String a = input.nextLine();
     System.out.println(calculation(a));
+    System.out.println(santaBasement(a));
 
   }//end main method
   public static int calculation(String input){
-    String openParenthesis = "(";
-    String closingParenthesis = ")";
     int santaFloor = 0;
 
     for(int i = 0; i < input.length(); i++){
-      if(Character.toString(input.charAt(i)).equals(openParenthesis)){
+      if(Character.toString(input.charAt(i)).equals("(")){
         santaFloor++;
       }//end if statment for countOpen
-       if(Character.toString(input.charAt(i)).equals(closingParenthesis)){
+       if(Character.toString(input.charAt(i)).equals(")")){
         santaFloor--;
       }//end if statment for countCLose
     }//end for loop
 
     return santaFloor;
   }//end Calculation method
+
+
+  //Method that will return value that first allow santa to go to basement which is -1
+  public static int santaBasement(String input){
+    int santaFloor = 0;
+
+    for(int i = 0; i < input.length(); i++){
+      if(santaFloor == -1){
+        return i;
+      }//end if statement for santaFloor -1
+      if(Character.toString(input.charAt(i)).equals("(")){
+        santaFloor++;
+      }else if(Character.toString(input.charAt(i)).equals(")")){
+        santaFloor--;
+      }//end if statment for countClose
+    }//end for loop
+
+    return 0; 
+
+  }//end santaBasement method
+
 
 }//end class
 
