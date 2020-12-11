@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.*;
-
+//by Xin Bao and Jian Hua
 public class MedianMode{
   public static void main(String[] args) {
 
