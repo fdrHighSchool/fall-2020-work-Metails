@@ -1,8 +1,5 @@
 import java.util.Arrays;
 
-//import sun.print.SunMinMaxPage;
-
-//import sun.print.SunMinMaxPage;
 
 class Grades2D {
   public static void main(String[] args) {
@@ -50,21 +47,7 @@ class Grades2D {
     return highestGradesStudent;
   }//end highestAverage
 
-  /*
-  public static int[][] valedictorian(int [][] grades) {
 
-    double average = 0.0;
-    double beyondAverage = 0.0;
-    int THEstudent = 0;
-    for(int i = 0; i < grades.length; i++) {
-      for(int x = 0; x > 15; x++) {
-        average += grades[i][x];
-      }///End the for loop
-      average /= 15;
-      if (average)
-    }
-  }
-*/
   public static double[] salutatorian(double maxGrades, int [][] grades) {
     double average = 0;
     double greatestAverage = 0;
@@ -86,14 +69,5 @@ class Grades2D {
     return highestGradesStudent;
   }//end salutorian
 
-  /*
-  }//end salutatorian
-   public static double getAverage(int[] arr){
-    double sum = 0;
-    for(int i = 0; i < arr.length; i++){
-      sum += arr[i];
-    }
-    return sum / arr.length;
-  }
-  */
+
 }//end class
