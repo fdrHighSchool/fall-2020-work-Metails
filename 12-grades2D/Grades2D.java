@@ -11,16 +11,15 @@ class Grades2D {
     double secondHighestGrades = salutatorian(highestGrades, grades)[0];
     int salutatorianStudent = (int)salutatorian(highestGrades, grades)[1];
 
-    System.out.println("The 2DArray withhelding grades is:\n" + Arrays.deepToString(randomGrades(grades)));
+    displayStudents(grades);
     System.out.println("\nStudent with the highest grade is: Student # " + highestStudent + " With the average grades of " + highestGrades);
-
     System.out.println("\nStudent with the second highest grade is: Student # " + salutatorianStudent + " With the average grades of " + secondHighestGrades);
 
   }//end main method
   public static int[][] randomGrades(int[][] grades) {
     for(int i = 0;i < grades.length;i++){
       for(int a = 0;a < grades[i].length; a++){
-      grades[i][a] = (int)(Math.random() * (100 - 55)) + 55;
+      grades[i][a] = (int)(Math.random() * (100 - 55 + 1)) + 55;
       }//end for loops of a
     }//end for loops of i
     return grades;
@@ -68,6 +67,18 @@ class Grades2D {
     double[] highestGradesStudent = new double[]{greatestAverage, greatestStudent + 1};
     return highestGradesStudent;
   }//end salutorian
+
+  public static void displayStudents(int [][] grades){
+    double average = 0;
+    for(int j = 0; j < grades.length; j++){
+      for(int k = 0; k < grades[j].length;k++){
+        average += grades[j][k];
+      }//end second for loops
+      average /= 10;
+      System.out.println("Student #" + (j+1) + ": " + average + "%");
+      average = 0;
+    }//end for loops
+  }//end displayStudents method
 
 
 }//end class
