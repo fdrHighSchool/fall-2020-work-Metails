@@ -33,7 +33,7 @@ class Grades2D {
       for(int a = 0;a < grades[i].length; a++){
         average += grades[i][a];
       }//end for loops of a
-      average /= 10;
+      average /= grades[i].length;
       if(average > greatestAverage){
         greatestAverage = average;
         greatestStudent = i;
@@ -55,7 +55,7 @@ class Grades2D {
       for(int a = 0;a < grades[i].length; a++){
         average += grades[i][a];
       }//end for loops of a
-      average /= 10;
+      average /= grades[i].length;
       if(average > greatestAverage && average < maxGrades){
         greatestAverage = average;
         greatestStudent = i;
@@ -74,7 +74,7 @@ class Grades2D {
       for(int k = 0; k < grades[j].length;k++){
         average += grades[j][k];
       }//end second for loops
-      average /= 10;
+      average /= grades[j].length;
       System.out.println("Student #" + (j+1) + ": " + average + "%");
       average = 0;
     }//end for loops
