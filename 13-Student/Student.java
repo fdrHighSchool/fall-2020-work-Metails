@@ -50,10 +50,10 @@ public class Student {
     boolean space = false;
     int lowestIndex = 0;
 
-    for(int count = 0; count < this.grades.length; count++){
-      if(this.grades[count] == 0){
+    for(int count = 1; count <= this.grades.length; count++){
+      if(this.grades[(this.grades.length - count)] == 0){
         space = true;
-        spaceIndex = count;
+        spaceIndex = this.grades.length - count;
       }//end if statement
     }//end for loop of count
 
