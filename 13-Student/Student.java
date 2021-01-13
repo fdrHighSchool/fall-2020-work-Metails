@@ -4,6 +4,7 @@ public class Student {
   // instance variables
   private String name;
   private String osis;
+  private double average;
   private int[] grades;
 
   //------------------------------------------------//
@@ -34,6 +35,12 @@ public class Student {
     this.name = name;
 
   }//end setName method
+
+  public void fillArray(){
+    for(int arrayCount = 0; arrayCount < this.grades.length; arrayCount++){
+      this.grades[arrayCount] = (int)(Math.random() * 46 + 55);
+    }//end for loop
+  }//end fillArray method
 
   /*
    * N: addGrade
@@ -77,8 +84,22 @@ public class Student {
 
 
   public double calculateAverage() {
+  double total = 0;
+  int totalAdded = 0;
+  int[] arrays = new int[10];
+ for(int i = 0; i < arrays.length; i++){
+   if(arrays[i] != 0){
+     total += arrays[i];
+     totalAdded++;
+   }//end if statement
+ }
+ if(totalAdded == 0){
+System.out.println("There's no grade in here");
+ }else{
+  this.average = total/totalAdded;
+ }//end else statement
 
-    return 0.0;
+    return this.average;
   }//end calculateAverage() method
 
   /*
@@ -87,6 +108,12 @@ public class Student {
    * NOTE: This method overrides the default toString method that
    *       displays the memory address.
    */
+
+   public void displayGrades(){
+     System.out.println(Arrays.toString(grades));
+   }//end displayGrades
+
+
   public String toString() {
     return "Student: " + this.name + " OSIS: " + this.osis;
 
